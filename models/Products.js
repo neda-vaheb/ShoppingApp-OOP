@@ -1,7 +1,8 @@
 class Products{
-    constructor(parent , products){
+    constructor(parent , products,cart){
         this.parent = parent;
         this.products = products;
+        this.cart = cart;
         this.parent.addEventListener("click" , this);
 
 
@@ -55,9 +56,9 @@ class Products{
 
     }
     addToCart(id){
-        const product = this.products.find((p)=> p.id === +id)
-
-        
+        const product = this.products.find((p)=> p.id === +id);
+        this.cart.products.push(product);
+        this.cart.showProducts();
 
     }
 }
