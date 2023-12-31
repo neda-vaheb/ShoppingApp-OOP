@@ -4,13 +4,14 @@ class Cart{
         this.products = [];
         this.price = price;
         this.toShow =[]; 
+        this.parent.addEventListener("click" , this);
     }
     showProducts(){
         this.toShow = [... new Set(this.products)];
         this.parent.innerHTML= "";
         this.toShow.forEach((product) => {
             const qty = this.products.filter(p => p.id === product.id).length;
-            createCart(product , qty);
+            this.createCart(product , qty);
 
         });
 
@@ -58,6 +59,44 @@ class Cart{
      
       </div> `;
         return controlJSX;
+    }
+    handleEvent(event){
+        const tagName = event.target.tagName;
+        const id = event.target.dataset.id;
+        const type = event.target.innerText;
+        
+        if(tagName !== "BUTTON") return;
+
+        switch (type){
+            case "+":
+                this.increase(id);
+            break;
+            case "-":
+                this.decrease(id);
+            break;
+            case "Remove":
+                this.remove(id);
+            break;    
+                
+        }
+
+    }
+
+    increase(id){
+        const product = this.products.find(p => p.id === +id)
+        this.products.push(product);
+        this.showProducts();
+    }
+
+    decrease(id){
+        const productIndex = this.products.findIndex(p => p.id === +id);
+        this.products.splice(productIndex , 1);
+        this.showProducts();
+    }
+    remove(id){
+        const newProduct = this.products.filter(p => p.id !== +id);
+        this.products = newProduct;
+        this.showProducts();
     }
 
 

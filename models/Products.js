@@ -51,7 +51,7 @@ class Products{
     handleEvent(event){
         const element = event.target;
         if(element.tagName === "BUTTON"){
-            this.addToCart(event.dataset.id);
+            this.addToCart(element.dataset.id);
         }
 
     }
