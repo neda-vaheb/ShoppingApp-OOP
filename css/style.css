@@ -206,3 +206,14 @@
     background-color: var(--color-error);
     color:white;
   }
+  #total-price{
+    background-color: white;
+    color: gray;
+    padding: 15px ;
+    border-radius: 20px;
+    border:2px solid var(--color-secondary);
+    font-weight: 600;
+  }
+  #total-price span{
+    color: var(--color-primary);
+  }

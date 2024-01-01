@@ -14,6 +14,7 @@ class Cart{
             this.createCart(product , qty);
 
         });
+        this.calculateTotalPrice();
 
     }
     createCart(data,qty){
@@ -97,6 +98,11 @@ class Cart{
         const newProduct = this.products.filter(p => p.id !== +id);
         this.products = newProduct;
         this.showProducts();
+    }
+
+    calculateTotalPrice(){
+        const total = this.products.reduce((acc , cur)=>(acc += cur.price),0)
+        this.price.innerText = "$" + total;
     }
 
 
