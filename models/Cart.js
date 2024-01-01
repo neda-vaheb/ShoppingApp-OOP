@@ -1,41 +1,14 @@
-class Cart{
+import Display from "./Display.js";
+
+class Cart extends Display{
     constructor(parent, price){
-        this.parent = parent;
+        super(parent ,products);
         this.products = [];
         this.price = price;
         this.toShow =[]; 
-        this.parent.addEventListener("click" , this);
     }
-    showProducts(){
-        this.toShow = [... new Set(this.products)];
-        this.parent.innerHTML= "";
-        this.toShow.forEach((product) => {
-            const qty = this.products.filter(p => p.id === product.id).length;
-            this.createCart(product , qty);
-
-        });
-        this.calculateTotalPrice();
-
-    }
-    createCart(data,qty){
-      const cartEle = document.createElement("div");
-
-      const imageEle = this.productImg(data);
-      const infoEle = this.productInfo(data);
-      const controlEle = this.productcontrol(data,qty);
-
-      cartEle.innerHTML = imageEle;
-      cartEle.innerHTML += infoEle;
-      cartEle.innerHTML += controlEle;
-
-      this.parent.appendChild(cartEle);
-    }
-    productImg(data){
-        const {image , alt }= data;
-        const imgJSX = `<img src=${image} alt = ${alt}/>`;
-        return imgJSX;
-    }
-
+ 
+    
     productInfo(data){
         const {name , price}=data;
         const infoJsx = ` <div class="cart-information">
